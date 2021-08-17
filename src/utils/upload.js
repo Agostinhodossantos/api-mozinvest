@@ -23,7 +23,7 @@ async function serverFileUpload(filepath, filename, destination, file) {
     var token = uuidv4();
     const metadata = {
         metadata: {
-            firebaseStorageDownloadTokens: token //reate a download token.
+            firebaseStorageDownloadTokens: token //create a download token.
         },
         contentType: file.mimetype,
         cacheControl: 'public, max-age=31536000',
@@ -38,7 +38,7 @@ async function serverFileUpload(filepath, filename, destination, file) {
     }).then((res) => {
 
         var fileName = res[0].name.replace("/", "%2F");
-        fileUrl = "https://firebasestorage.googleapis.com/v0/b/sadc-vale.appspot.com/o/" + fileName + "?alt=media&token=" + token;
+        fileUrl = "https://firebasestorage.googleapis.com/v0/b/events-18105.appspot.com/o/" + fileName + "?alt=media&token=" + token;
 
     }).catch((err) => {
         console.log(err)

@@ -47,5 +47,6 @@ function modelExhibitor(req) {
 
 module.exports = {
     getAllExhibitors,
-    getExhibitorByID
+    getExhibitorByID,
+    setExhibitor
 }
