@@ -5,11 +5,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 const initRoutes = require("./routes/");
 
-var corsOptions = {
-    origin: "http://localhost:8081"
-}
-
-app.use(cors(corsOptions));
+// var corsOptions = {
+//     origin: "http://localhost:8081"
+// }
+//
+// app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
