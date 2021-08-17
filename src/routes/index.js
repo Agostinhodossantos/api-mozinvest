@@ -6,6 +6,7 @@ const controller = require("../controllers/exhibitor.controller");
 let routes = (app) => {
     router.get("/", home.index);
     router.get("/exhibitors", controller.getAllExhibitors);
+    router.get("/exhibitors/:id", controller.getExhibitorByID);
     app.use(router);
 }
 
