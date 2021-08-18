@@ -21,6 +21,9 @@ const setExhibitor = async (req, res) => {
 
 const getAllExhibitors = async (req, res) => {
     let allExhibitor = await providers.getExhibitor();
+
+    console.log(allExhibitor);
+
     if (allExhibitor != null) {
         res.status(200).send(JSON.parse(JSON.stringify(allExhibitor)));
     } else {
