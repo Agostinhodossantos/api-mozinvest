@@ -19,6 +19,16 @@ const setExhibitor = async (req, res) => {
     }
 }
 
+const getProductExhibitor = async (req, res) => {
+    let uid = req.params.id;
+    let product = await providers.getProductExhibitor(uid);
+    if (!isEmpty(product)) {
+        res.status(200).send(JSON.parse(JSON.stringify(product)))
+    } else  {
+        res.status(500).send([])
+    }
+}
+
 const getImagesExhibitor = async (req, res) => {
     let uid = req.params.id;
     let exhibitor = await providers.getImagesExhibitor(uid);
@@ -63,5 +73,6 @@ module.exports = {
     getAllExhibitors,
     getExhibitorByID,
     setExhibitor,
-    getImagesExhibitor
+    getImagesExhibitor,
+    getProductExhibitor
 }

@@ -12,6 +12,19 @@ async function getExhibitor() {
     return list;
 }
 
+async function getProductExhibitor (uid) {
+    let list = []
+    await exhibitor_ref
+        .child(uid)
+        .child("product")
+        .once("value", async (snapshot) => {
+            snapshot.forEach((child) => {
+                list.push(child.val());
+            });
+        })
+    return list;
+}
+
 async function getImagesExhibitor(uid) {
     console.log(uid)
     let list = [];
@@ -33,5 +46,6 @@ async function getExhibitorByID(id) {
 module.exports = {
     getExhibitor,
     getExhibitorByID,
-    getImagesExhibitor
+    getImagesExhibitor,
+    getProductExhibitor
 }
