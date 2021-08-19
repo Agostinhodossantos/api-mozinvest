@@ -6,7 +6,13 @@ async function getExhibitor() {
     let list = [];
     await exhibitor_ref.once('value',  async (snapshot) => {
         snapshot.forEach((child) => {
-            list.push(child.val());
+
+            let exhibitorValue = child.val();
+
+            delete exhibitorValue.product;
+            delete exhibitorValue.images;
+            delete exhibitorValue.password;
+            list.push(exhibitorValue);
         });
 });
     return list;

@@ -22,6 +22,7 @@ const setExhibitor = async (req, res) => {
 const getProductExhibitor = async (req, res) => {
     let uid = req.params.id;
     let product = await providers.getProductExhibitor(uid);
+
     if (!isEmpty(product)) {
         res.status(200).send(JSON.parse(JSON.stringify(product)))
     } else  {
@@ -43,7 +44,6 @@ const getImagesExhibitor = async (req, res) => {
 const getAllExhibitors = async (req, res) => {
     let allExhibitor = await providers.getExhibitor();
 
-    console.log(allExhibitor);
 
     if (allExhibitor != null) {
         res.status(200).send(JSON.parse(JSON.stringify(allExhibitor)));
