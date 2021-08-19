@@ -12,6 +12,7 @@ let routes = (app) => {
     router.get("/exhibitors/:id/images", controller.getImagesExhibitor);
     router.post("/exhibitors", upload.single('file'), controller.setExhibitor);
     router.get("/exhibitors/:id/products", controller.getProductExhibitor );
+
     app.use(router);
 }
 
