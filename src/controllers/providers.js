@@ -25,13 +25,20 @@ async function getProductExhibitor (uid) {
         .child(uid)
         .child("product")
         .once("value", async (snapshot) => {
-            snapshot.forEach(async (child) => {
+            snapshot.forEach( (child) => {
                 let product = child.val();
-                delete product.images;
-                product["images"] = await getProductImages(product.uidExhibitor, product.uid);
-                list.push(child.val());
+                delete product.img;
+                list.push(product);
             });
         })
+    // let newList = []
+    // await list.forEach(async (prod) => {
+    //     prod["img"] =  await getProductImages(prod.uidExhibitor, prod.uid);
+    //     newList.push(prod);
+    //     console.log(newList);
+    // })
+
+
     return list;
 }
 
@@ -41,7 +48,8 @@ async function getProductImages(uidExhibitor, uidProduct) {
         .child(uidExhibitor)
         .child("product")
         .child(uidProduct)
-        .once("value", async (snapshot) => {
+        .child("img")
+        .once("value",  (snapshot) => {
             snapshot.forEach((child) => {
                 list.push(child.val())
             })
