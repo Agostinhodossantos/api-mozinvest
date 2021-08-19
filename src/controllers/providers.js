@@ -18,15 +18,33 @@ async function getExhibitor() {
     return list;
 }
 
+
 async function getProductExhibitor (uid) {
     let list = []
     await exhibitor_ref
         .child(uid)
         .child("product")
         .once("value", async (snapshot) => {
-            snapshot.forEach((child) => {
+            snapshot.forEach(async (child) => {
+                let product = child.val();
+                delete product.images;
+                product["images"] = await getProductImages(product.uidExhibitor, product.uid);
                 list.push(child.val());
             });
+        })
+    return list;
+}
+
+async function getProductImages(uidExhibitor, uidProduct) {
+    let list = [];
+    await exhibitor_ref
+        .child(uidExhibitor)
+        .child("product")
+        .child(uidProduct)
+        .once("value", async (snapshot) => {
+            snapshot.forEach((child) => {
+                list.push(child.val())
+            })
         })
     return list;
 }
