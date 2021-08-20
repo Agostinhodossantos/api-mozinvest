@@ -31,15 +31,21 @@ async function getProductExhibitor (uid) {
                 list.push(product);
             });
         })
-    // let newList = []
+
+    let newList = [];
     // await list.forEach(async (prod) => {
     //     prod["img"] =  await getProductImages(prod.uidExhibitor, prod.uid);
     //     newList.push(prod);
     //     console.log(newList);
     // })
 
+    for (let prod of list) {
+        //console.log(prod);
+        prod["img"] = await await getProductImages(prod.uidExhibitor, prod.uid);
+        newList.push(prod);
+    }
 
-    return list;
+    return newList;
 }
 
 async function getProductImages(uidExhibitor, uidProduct) {
@@ -54,6 +60,7 @@ async function getProductImages(uidExhibitor, uidProduct) {
                 list.push(child.val())
             })
         })
+    console.log(list);
     return list;
 }
 
