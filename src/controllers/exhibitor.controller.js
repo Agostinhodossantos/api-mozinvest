@@ -1,6 +1,8 @@
 const {} = require("../model/Exhibitor");
 const {} = require("../model/LatLng");
 const providers = require("../controllers/providers");
+const {serverFileUpload} = require("../utils/upload")
+const path = require("path");
 const { getDate, isEmpty, getUuid } = require('../utils/utils')
 
 const {json} = require("express");
@@ -17,6 +19,8 @@ const setExhibitor = async (req, res) => {
         file = path.join(__dirname, "../../uploads/" + req.file.filename);
         urlPhoto = await serverFileUpload(path.normalize(file), req.file.filename, "exhibitor", req.file);
     }
+
+    console.log(urlPhoto);
 }
 
 const getProductExhibitor = async (req, res) => {
@@ -69,10 +73,11 @@ function modelExhibitor(req) {
 }
 
 
+
 module.exports = {
     getAllExhibitors,
     getExhibitorByID,
     setExhibitor,
     getImagesExhibitor,
-    getProductExhibitor
+    getProductExhibitor,
 }
